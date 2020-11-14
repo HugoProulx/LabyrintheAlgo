@@ -1,3 +1,7 @@
+#Hugo Proulx
+#DA : 1801324
+#Le main gère l’entièreté du projet
+
 extends Node
 
 export(float) var vitesse = 0.1
@@ -105,19 +109,29 @@ func _on_Timer_timeout():
 		_parcourPlusCourt()
 		$Timer.stop()
 		
+		
+		
+# Fonction qui remet le programme à zero
 func _reset():
 	get_tree().call_group("Cases", "_reset_color")
 
 
+
+# Détecteur de pression sur le bouton largeur 
 func _on_Boutonlargeur_pressed():
 	destinationFinalePointage = parcours_largeur()
 
 
+
+# Détecteur de pression sur le bouton reset
 func _on_BoutonReset_pressed():
 	parcours = []
 	visite= []
 	_reset()
 	
+	
+	
+# Méthode permettant de trouver un noeud selon le noeud qu’il est
 func _trouverCleNoeud(noeud):
 	for key in graphe:
 		if graphe[key] == noeud:
@@ -125,13 +139,14 @@ func _trouverCleNoeud(noeud):
 			
 			
 			
+# Méthode permettant de trouver un noeud selon la valeur qu’il a
 func _trouverCleNoeudPointage(noeud):
 	for key in grapheTentativeDistance:
 		if grapheTentativeDistance[key] == noeud:
 			return key;
 			
 			
-			
+# Méthode permettant de trouver le chemin le plus court lorsque la sortie est trouver.
 func _parcourPlusCourt():
 	var parcourPlusCourt=[]
 	var present = destinationFinalePointage
